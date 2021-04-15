@@ -13,12 +13,15 @@ r = requests.get(args.source)
 soup = BeautifulSoup(r.text, "html.parser")
 article = soup.find('div',{'class':'article-body'})
 article_text = article.find_all(text=True)
+article_links = article.find_all('a')
 
 if not args.dest:
 	print("No destination provided, printing to screen")
 	print(soup.title)
-	for line in article_text:
-		print(line)
+	# for line in article_text:
+	# 	print(line)
+	for link in article_links:
+		print([t for t in link.find_all(text=True) if t.parent.name == 'a'])
 else:
 	# write some file handing stuff here and then print the text to it
 	pass
