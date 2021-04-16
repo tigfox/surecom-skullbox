@@ -1,9 +1,22 @@
 # surecom-skullbox
 
+An easy way to ready WAPO and NYT articles on the CLI. ;)
+
 ## Dependencies
-python 3
-requests
-beautifulsoup4
+python 3  
+[requests](https://pypi.org/project/requests/)  
+[beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
+
+## Usage
+
+```
+$ ./article.py https://www.nytimes.com/yadayadayada
+```
+or  
+```
+$ ./article.py https://www.washingtonpost.com/yadayadayada
+```
+
 
 ## License
 
