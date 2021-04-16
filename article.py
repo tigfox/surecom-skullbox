@@ -3,9 +3,10 @@
 import requests
 from bs4 import BeautifulSoup
 import argparse
+import sys
 
 parser = argparse.ArgumentParser()
-parser.add_argument("source", help="a wapo article to pull, in the form of a URL")
+parser.add_argument("source", help="A WAPO or NYT article to pull in from a URL.")
 parser.add_argument("-d", "--dest", help="filename to save article as. defaults to print to the screen")
 args = parser.parse_args()
 
@@ -14,8 +15,11 @@ soup = BeautifulSoup(r.text, "html.parser")
 url_list = args.source.split(".")
 if "nytimes" in url_list:
 	article = soup.find('section',{'name':'articleBody'}) # NYT
-if "washingtonpost" in url_list:
-	article = soup.find('div',{'class':'article-body'}) # wapo
+elif "washingtonpost" in url_list:
+	article = soup.find('div',{'class':'article-body'}) # WAPO
+else:
+	print("WAPO and NYT are currently the only sites supported.")
+	sys.exit()
 article_text = article.find_all(text=True)
 article_links = article.find_all('a')
 
